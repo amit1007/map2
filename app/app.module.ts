@@ -1,27 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MapService} from './service/map.service'
+import {enviroment} from '../environments/environment';
+import {AngularFireModule} from 'angularfire2';
+export const firebaseConfig=enviroment.firebaseConfig;
+
+import {AgmCoreModule} from '@agm/core';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { HttpClientModule } from '@angular/common/http';
-// import { FormsModule }   from '@angular/forms';
-// import { FormGroup } from '@angular/forms';
-import { FormsModule,ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { GoogleMapComponent } from './google-map/google-map.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GoogleMapComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    AngularFireModule.initializeApp(firebaseConfig),
+    AgmCoreModule.forRoot({
+      apiKey:enviroment.googleMapsKey
+    }),
+    AppRoutingModule
   ],
-  providers: [MapService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
