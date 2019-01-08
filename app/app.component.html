@@ -1,0 +1,22 @@
+<form [formGroup]="mapForm" name ="mapForm"(ngSubmit)="onSubmit(mapForm.value)" id="mapForm" method="POST"> 
+<div style="text-align:center">
+<h1> map</h1>
+<!-- <div >
+<span>Longitude: {{test1}}</span> 
+<span>Latitude: {{test}}</span>
+</div> -->
+
+<!-- <div *ngIf="mapService.map.length"></div>
+<div *ngFor='let location of mapService.location'> {{location}} </div> -->
+
+Longitude:{{long}} <span id="currentLong"></span> 
+Latitude:{{latt}} <span id="currentLat"></span> 
+timeStamp:{{timestamp}}
+</div>
+<button type="submit"(click)="showPosition()">Show coordinate</button>
+
+
+<button type="submit"(click)="onSubmit()">coordinate</button>
+</form>
+<router-outlet></router-outlet>
+
